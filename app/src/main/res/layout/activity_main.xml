@@ -14,41 +14,30 @@
         android:layout_height="0dp"
         android:layout_weight="100"/>
 
-    <EditText
-        android:id="@+id/inputValuePlainTextView"
+    <TextView
+        android:id="@+id/wResultTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="Enter input value"
-        android:layout_weight="1"
-        android:layout_margin="10dp"/>
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:text="Производная от w = " />
 
     <EditText
-        android:id="@+id/outputValuePlainTextView"
+        android:id="@+id/wPlainTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="Enter output value"
+        android:layout_margin="10dp"
         android:layout_weight="1"
-        android:layout_margin="10dp"/>
-
-    <EditText
-        android:id="@+id/thresholdValuePlainTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="text"
-        android:hint="Enter threshold value"
-        android:layout_weight="1"
-        android:layout_margin="10dp"/>
+        android:hint="@string/enter_w"
+        android:inputType="number" />
 
     <Button
         android:id="@+id/graphButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create Graph"
+        android:text="@string/create_graph"
         android:layout_weight="1"
         android:layout_margin="20dp"/>
 

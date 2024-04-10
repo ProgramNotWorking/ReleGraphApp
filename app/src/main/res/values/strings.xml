@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ReleGraphApp</string>
+    <string name="enter_w">Enter w value</string>
+    <string name="w_value_is_not_correct">W value must be between 1 and 0</string>
+    <string name="create_graph">Create graph</string>
+    <string name="w_result">derivative w value</string>
 </resources>

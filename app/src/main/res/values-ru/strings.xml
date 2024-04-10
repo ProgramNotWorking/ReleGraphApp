@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ReleGraphApp</string>
+    <string name="enter_w">Введите значение w</string>
+    <string name="w_value_is_not_correct">w должно быть между 1 или 0</string>
+    <string name="create_graph">Нарисовать график</string>
+    <string name="w_result">Производная w</string>
+</resources>
