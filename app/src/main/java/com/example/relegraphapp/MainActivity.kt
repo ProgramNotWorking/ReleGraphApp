@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 } else if ("," in bPlainTextView.text.toString()) {
                     Toast.makeText(
                         this@MainActivity,
-                        "Записывайте десятичные части не через ',' а через '.'",
+                        "Записывайте десятичные части через точку",
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
