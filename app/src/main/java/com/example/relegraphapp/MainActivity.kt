@@ -10,14 +10,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.relegraphapp.databinding.ActivityMainBinding
 import com.example.relegraphapp.graph.Graph
-import com.example.relegraphapp.viewmodels.MainViewModel
-import com.jjoe64.graphview.GraphView
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
-    private lateinit var graph: GraphView
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,27 +22,50 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        val viewModel = MainViewModel()
-
         onTouchCloseKeyboard()
 
         binding.apply {
 
-            graph = graphView
-
             graphButton.setOnClickListener {
                 graphView.removeAllSeries()
-                val w = wPlainTextView.text.toString().toInt()
-                if ((w >= 0) and (w <= 1)) {
-                    val graph = Graph(graphView, w)
-                    graph.initGraph()
-                    wResultTextView.text = wResultTextView.text.toString() + graph.getWValue().toString()
-                } else {
+                if (
+                    wPlainTextView.text.toString() == "" ||
+                    aPlainTextView.text.toString() == "" ||
+                    bPlainTextView.text.toString() == "" ||
+                    KPlainTextView.text.toString() == ""
+                    ) {
+
                     Toast.makeText(
                         this@MainActivity,
-                        R.string.w_value_is_not_correct,
+                        "Поля ввода должны быть заполнены",
                         Toast.LENGTH_SHORT
                     ).show()
+
+                } else if ("," in bPlainTextView.text.toString()) {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Записывайте десятичные части не через ',' а через '.'",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    val w = wPlainTextView.text.toString().toInt()
+                    if ((w >= 0) and (w <= 1)) {
+                        val graph = Graph(
+                            graphView,
+                            w,
+                            aPlainTextView.text.toString().toDouble(),
+                            bPlainTextView.text.toString().toDouble(),
+                            KPlainTextView.text.toString().toDouble()
+                        )
+                        graph.drawGraph()
+                        wResultTextView.text = wResultTextView.text.toString() + graph.getWValue().toString()
+                    } else {
+                        Toast.makeText(
+                            this@MainActivity,
+                            R.string.w_value_is_not_correct,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             }
 

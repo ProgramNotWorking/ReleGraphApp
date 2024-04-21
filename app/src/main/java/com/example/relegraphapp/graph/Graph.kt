@@ -5,11 +5,14 @@ import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.LegendRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
-import java.lang.Math.pow
 import kotlin.math.*
 
 class Graph(
-    private val graphView: GraphView, val w: Int
+    private val graphView: GraphView,
+    private val w: Int,
+    private val a: Double,
+    private val b: Double,
+    private val K: Double
 ) {
 
     companion object {
@@ -34,11 +37,12 @@ class Graph(
             color = Color.YELLOW
         }
 
-        private val a = -1.0
-        private val b = 2.996
-        // private val l = 1.0
-        private val K = 1000000.0
-        private val T = 40.0
+//        private const val a = -1.0
+//        private const val b = 2.996
+//        private const val K = 1000000.0
+        private const val T = 40.0
+        private const val STEP = 0.1
+        private const val ITERATIONS = (T / STEP).toInt()
     }
 
     private fun calculateW(t: Double, operation: (Double) -> Double): Double {
@@ -49,11 +53,8 @@ class Graph(
 
     fun getWValue() = calculateW(w.toDouble()) { 3 * sin(it) }
 
-    fun initGraph() {
-        calculateW(1.0) { 3 * sin(it) }
-
-        for (t in 0..(T * 10).toInt() step 1) {
-            // val w = calculateW(t.toDouble(), K, a, b, l, w0)
+    fun drawGraph() {
+        for (t in 0 until ITERATIONS) {
             val w = if (x((t / 10).toDouble()) >= 0) {
                 1.0
             } else {
